@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard</title>
+    <!-- Google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;700&family=Bellefair&family=Barlow:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+
+     <!-- font awesome kit -->
+     <script
+     src="https://kit.fontawesome.com/c6eadd0fb1.js"
+     crossorigin="anonymous"
+   ></script>
+
+    <link rel="stylesheet" href="../public/css/index.css" />
+  </head>
+  <body>
+    <header class="container flex">
+        <button class="btn">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+        <div class="searchbox">
+            <input type="text" placeholder="search">
+            <i class="fa-solid fa-magnifying-glass"></i>
+        </div>
+        <div class="settings-container flex">
+            <i class="fa-solid fa-gear"></i>
+            <i class="fa-solid fa-bell"></i>
+        </div>
+    </header>
+    <div class="dashboard-container flex">
+        <aside class="side-nav bg-dark text-white">
+            <div class="user-container">
+                <div class="user-logo"></div>
+                <div class="username fs-500"></div>
+            </div>
+            <div class="date-container"></div>
+            <div class="activities-container">
+                <ul class="side-nav-list flow">
+                    <li class="list-item">
+                        <a class="flex bg-accent fs-500" href="#">
+                            <i class="fa-solid fa-house"></i>
+                            <span> Overview</span>
+                        </a>
+                    </li>
+                    
+                    <li class="list-item">
+                        <a class="flex bg-accent fs-500" href="#">
+                            <i class="fa-solid fa-folder"></i>
+                            <span> Projects</span>
+                        </a>
+                    </li>
+                    <li class="list-item">
+                        <a class="flex bg-accent fs-500" href="#">
+                            <i class="fa-solid fa-calender"></i>
+                            <span> Calender</span>
+                        </a>
+                    </li>
+                    <li class="list-item">
+                        <a class="flex bg-accent fs-500" href="#">
+                            <i class="fa-solid fa-signal-bars"></i>
+                            <span> Reports</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </aside>
+        <main class="canvas"></main>
+    </div>
+  </body>
+</html>
