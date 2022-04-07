@@ -3,27 +3,30 @@
 /* ------------------- */
 
 :root {
-    /* colors */
-    --clr-dark: 230 35% 7%;
-    --clr-light: 231 77% 90%;
-    --clr-white: 0 0% 100%;
-    
-    /* font-sizes */
-    --fs-900: 9.375rem;
-    --fs-800: 6.25rem;
-    --fs-700: 3.5rem;
-    --fs-600: 2rem;
-    --fs-500: 1.75rem;
-    --fs-400: 1.125rem;
-    --fs-300: 1rem;
-    --fs-200: 0.875rem;
-    
-    /* font-families */
-    --ff-serif: "Bellefair", serif;
-    --ff-sans-cond: "Barlow Condensed", sans-serif;
-    --ff-sans-normal: "Barlow", sans-serif;
-}
+  /* colors */
+  --clr-dark: 230 35% 7%;
+  --clr-light: 231 77% 90%;
+  --clr-white: 0 0% 100%;
 
+  /* font-sizes */
+  --fs-900: 9.375rem;
+  --fs-800: 6.25rem;
+  --fs-700: 3.5rem;
+  --fs-600: 2rem;
+  --fs-500: 1.75rem;
+  --fs-400: 1.125rem;
+  --fs-300: 1rem;
+  --fs-200: 0.875rem;
+
+  /* font-weight */
+  --fw-bold: 500;
+  --fw-bolder: 700;
+
+  /* font-families */
+  --ff-serif: "Bellefair", serif;
+  --ff-sans-cond: "Barlow Condensed", sans-serif;
+  --ff-sans-normal: "Barlow", sans-serif;
+}
 
 /* ------------------- */
 /* Reset               */
@@ -35,7 +38,7 @@
 *,
 *::before,
 *::after {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 /* Reset margins */
@@ -46,10 +49,9 @@ h3,
 h4,
 h5,
 p,
-
 figure,
 picture {
-    margin: 0; 
+  margin: 0;
 }
 
 h1,
@@ -59,24 +61,24 @@ h4,
 h5,
 h6,
 p {
-    font-weight: 400;
+  font-weight: 400;
 }
 
 /* set up the body */
 body {
-    font-family: var(--ff-sans-normal);
-    font-size: var(--fs-400);
-    color: hsl( var(--clr-dark) );
-    background-color: hsl( var(--clr-light) );
-    line-height: 1.5;
-    min-height: 100vh;
+  font-family: var(--ff-sans-normal);
+  font-size: var(--fs-400);
+  color: hsl(var(--clr-dark));
+  background-color: hsl(var(--clr-light));
+  line-height: 1.5;
+  min-height: 100vh;
 }
 
 /* make images easier to work with */
 img,
-picutre {
-    max-width: 100%;
-    display: block;
+picture {
+  max-width: 100%;
+  display: block;
 }
 
 /* make form elements easier to work with */
@@ -84,21 +86,20 @@ input,
 button,
 textarea,
 select {
-    font: inherit;
+  font: inherit;
 }
 
 /* remove animations for people who've turned them off */
-@media (prefers-reduced-motion: reduce) {  
+@media (prefers-reduced-motion: reduce) {
   *,
   *::before,
   *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
+    /* scroll-behavior: auto !important; */
   }
 }
-
 
 /* ------------------- */
 /* Utility classes     */
@@ -107,32 +108,32 @@ select {
 /* general */
 
 .flex {
-    display: flex;
-    gap: var(--gap, 1rem);
+  display: flex;
+  gap: var(--gap, 1rem);
 }
 
 .grid {
-    display: grid;
-    gap: var(--gap, 1rem);
+  display: grid;
+  gap: var(--gap, 1rem);
 }
 
 .flow > *:where(:not(:first-child)) {
-    margin-top: var(--flow-space, 1rem);
-    outline: 1px solid red;
+  margin-top: var(--flow-space, 1rem);
+  outline: 1px solid red;
 }
 
 .container {
-    padding-inline: 2em;
-    margin-inline: auto;
-    max-width: 80rem;
+  padding-inline: 2em;
+  margin-inline: auto;
+  max-width: 80rem;
 }
 
 .sr-only {
-  position: absolute; 
+  position: absolute;
   width: 1px;
   height: 1px;
   padding: 0;
-  margin: -1px; 
+  margin: -1px;
   overflow: hidden;
   clip: rect(0, 0, 0, 0);
   white-space: nowrap; /* added line */
@@ -141,85 +142,263 @@ select {
 
 /* colors */
 
-.bg-dark { background-color: hsl( var(--clr-dark) );}
-.bg-accent { background-color: hsl( var(--clr-light) );}
-.bg-white { background-color: hsl( var(--clr-white) );}
+.bg-dark {
+  background-color: hsl(var(--clr-dark));
+}
+.bg-accent {
+  background-color: hsl(var(--clr-light));
+}
+.bg-white {
+  background-color: hsl(var(--clr-white));
+}
 
-.text-dark { color: hsl( var(--clr-dark) );}
-.text-accent { color: hsl( var(--clr-light) );}
-.text-white { color: hsl( var(--clr-white) );}
+.text-dark {
+  color: hsl(var(--clr-dark));
+}
+.text-accent {
+  color: hsl(var(--clr-light));
+}
+.text-white {
+  color: hsl(var(--clr-white));
+}
 
 /* typography */
 
-.ff-serif { font-family: var(--ff-serif); } 
-.ff-sans-cond { font-family: var(--ff-sans-cond); } 
-.ff-sans-normal { font-family: var(--ff-sans-normal); } 
+.ff-serif {
+  font-family: var(--ff-serif);
+}
+.ff-sans-cond {
+  font-family: var(--ff-sans-cond);
+}
+.ff-sans-normal {
+  font-family: var(--ff-sans-normal);
+}
 
-.letter-spacing-1 { letter-spacing: 4.75px; } 
-.letter-spacing-2 { letter-spacing: 2.7px; } 
-.letter-spacing-3 { letter-spacing: 2.35px; } 
+.letter-spacing-1 {
+  letter-spacing: 4.75px;
+}
+.letter-spacing-2 {
+  letter-spacing: 2.7px;
+}
+.letter-spacing-3 {
+  letter-spacing: 2.35px;
+}
 
-.uppercase { text-transform: uppercase; }
+.uppercase {
+  text-transform: uppercase;
+}
 
-.fs-900 { font-size: var(--fs-900); }
-.fs-800 { font-size: var(--fs-800); }
-.fs-700 { font-size: var(--fs-700); }
-.fs-600 { font-size: var(--fs-600); }
-.fs-500 { font-size: var(--fs-500); }
-.fs-400 { font-size: var(--fs-400); }
-.fs-300 { font-size: var(--fs-300); }
-.fs-200 { font-size: var(--fs-200); }
+.fs-900 {
+  font-size: var(--fs-900);
+}
+.fs-800 {
+  font-size: var(--fs-800);
+}
+.fs-700 {
+  font-size: var(--fs-700);
+}
+.fs-600 {
+  font-size: var(--fs-600);
+}
+.fs-500 {
+  font-size: var(--fs-500);
+}
+.fs-400 {
+  font-size: var(--fs-400);
+}
+.fs-300 {
+  font-size: var(--fs-300);
+}
+.fs-200 {
+  font-size: var(--fs-200);
+}
+
+.fw-bold {
+  font-weight: var(--fw-bold);
+}
+.fw-bolder {
+  font-weight: var(--fw-bolder);
+}
 
 .fs-900,
 .fs-800,
 .fs-700,
 .fs-600 {
-    line-height: 1.1;
+  line-height: 1.1;
 }
-
 
 /* ------------ */
 /* ----styling page  */
 header {
-    min-height: 10vh;
-    align-items: center;
-    box-shadow: 0 1px 10px 0 rgba(0, 0, 0, .4);
+  min-height: 10vh;
+  align-items: center;
+  box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.4);
 }
 
-.side-nav {
-    flex-direction: column;
-    flex-shrink: 0;
-    min-height: 90vh;
-    width: 250px;
-    overflow: hidden;
-    
+.user-logo {
+  padding: 1em 0.25em;
 }
 
-.activities-container {
-    /* forr middle sde bar */
-    overflow-x: hidden;
-    overflow-y: auto;
+.sidenav {
+  /* cursor: pointer; */
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+  min-height: 90vh;
+  width: 80px;
+  overflow: hidden;
+  transition: width 0.5ms ease-in-out;
 }
 
-.side-nav-list {
-    list-style-type: none;
-    margin: 0;
-    padding: 1em 0.5em;
+.user-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 1.5rem;
 }
 
 /* fixing font aweseome icons not showing */
 .fa-signal-bars:before {
-    content: "\f690";
-        
-}       
+  content: "\f690";
+}
 .fa-calender:before {
-    content: "\f133";
-        
-}       
-.list-item a {
-    align-items: center;
-    text-decoration: none;
-    color: var(--clr-white);
-    --gap:4rem;
+  content: "\f133";
+}
 
+.activities-container {
+  /* for middle sde bar */
+  flex-grow: 1;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.sidenav-list {
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  width: 100%;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.sidenav-list-item {
+  position: relative;
+  width: 100%;
+}
+
+.sidenav-list-item.active {
+  color: var(--clr-dark);
+  background-color: hsl(39, 100%, 50%);
+}
+
+.sidenav-list-item.active::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3px;
+  height: 100%;
+  background-color: red;
+}
+
+.sidenav-list-item:hover {
+  background: hsl(39, 90%, 70%);
+}
+
+.sidenav-link {
+  display: flex;
+  width: 100%;
+  padding: 0.5rem;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  text-decoration: none;
+  color: var(--clr-white);
+
+  transition: all 0.5ms ease-in-out;
+}
+
+/* animating the side nav */
+.sidenav-link:hover i {
+  color: red;
+  transform: scale(1.3);
+}
+
+.sidebar-hidden {
+  opacity: 0;
+  transition: opacity 0.7ms ease-in-out;
+  width: 0;
+}
+
+.sidenav.open {
+  width: 200px;
+}
+
+.sidenav.open .sidebar-hidden {
+  opacity: 1;
+  width: 100%;
+}
+
+.sidenav.open .sidenav-link {
+  padding: 0.5em 1em;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.sidenav.open .user-logo {
+  width: 100px;
+  height: 100px;
+}
+
+/* -----styling the checkbox to switch colormode */
+
+.mode-switch-container {
+  margin-top: 1.5rem;
+  min-height: 10vh;
+  display: grid;
+  place-items: center;
+}
+
+.switch-toggler {
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: -9990px;
+  opacity: 0;
+}
+.switch-box {
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+}
+
+.switch-box::before,
+.switch-box::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -50px;
+  font-size: var(--fs-300);
+  width: 3em;
+  height: 1.5em;
+  background-color: hsl(var(--clr-white));
+  border-radius: 1em;
+}
+
+.switch-box::after {
+  width: 1.5em;
+  background-color: hsl(var(--clr-light));
+}
+
+.switch-toggler:checked + .switch-box {
+  color: red;
+}
+
+/* handling mode switch */
+.switch-toggler:checked + .switch-box::after {
+  left: -20px;
+  background-color: hsl(var(--clr-dark));
 }

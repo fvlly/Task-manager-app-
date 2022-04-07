@@ -13,66 +13,86 @@
       rel="stylesheet"
     />
 
-     <!-- font awesome kit -->
-     <script
-     src="https://kit.fontawesome.com/c6eadd0fb1.js"
-     crossorigin="anonymous"
-   ></script>
+    <!-- font awesome kit -->
+    <script
+      src="https://kit.fontawesome.com/c6eadd0fb1.js"
+      crossorigin="anonymous"
+    ></script>
 
     <link rel="stylesheet" href="../public/css/index.css" />
+
+    <!-- custom js -->
+    <script src="../public/index.js" defer></script>
   </head>
   <body>
     <header class="container flex">
-        <button class="btn">
-            <i class="fa-solid fa-bars"></i>
-        </button>
-        <div class="searchbox">
-            <input type="text" placeholder="search">
-            <i class="fa-solid fa-magnifying-glass"></i>
-        </div>
-        <div class="settings-container flex">
-            <i class="fa-solid fa-gear"></i>
-            <i class="fa-solid fa-bell"></i>
-        </div>
+      <button class="btn" data-menu-icon-btn>
+        <i class="fa-solid fa-bars"></i>
+      </button>
+      <div class="searchbox">
+        <input type="text" placeholder="search" />
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </div>
+      <div class="settings-container flex">
+        <i class="fa-solid fa-gear"></i>
+        <i class="fa-solid fa-bell"></i>
+      </div>
     </header>
     <div class="dashboard-container flex">
-        <aside class="side-nav bg-dark text-white">
-            <div class="user-container">
-                <div class="user-logo"></div>
-                <div class="username fs-500"></div>
-            </div>
-            <div class="date-container"></div>
-            <div class="activities-container">
-                <ul class="side-nav-list flow">
-                    <li class="list-item">
-                        <a class="flex bg-accent fs-500" href="#">
-                            <i class="fa-solid fa-house"></i>
-                            <span> Overview</span>
-                        </a>
-                    </li>
-                    
-                    <li class="list-item">
-                        <a class="flex bg-accent fs-500" href="#">
-                            <i class="fa-solid fa-folder"></i>
-                            <span> Projects</span>
-                        </a>
-                    </li>
-                    <li class="list-item">
-                        <a class="flex bg-accent fs-500" href="#">
-                            <i class="fa-solid fa-calender"></i>
-                            <span> Calender</span>
-                        </a>
-                    </li>
-                    <li class="list-item">
-                        <a class="flex bg-accent fs-500" href="#">
-                            <i class="fa-solid fa-signal-bars"></i>
-                            <span> Reports</span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </aside>
-        <main class="canvas"></main>
+      <aside class="sidenav open bg-dark text-white" data-sidenav>
+        <div class="user-container">
+          <div class="user-logo">
+            <img
+              src="/public/images/logo.jpg"
+              alt="loo.jpg"
+              width="50px"
+              height="50px"
+            />
+          </div>
+          <div class="username text-white fs-300">Fvlly</div>
+        </div>
+        <div class="date-container"></div>
+        <div class="activities-container">
+          <ul class="sidenav-list flex flow">
+            <li class="sidenav-list-item active">
+              <a class="sidenav-link fs-300 fw-bolder" href="#">
+                <i class="fa-solid fa-house"></i>
+                <span class="sidebar-hidden"> Overview</span>
+              </a>
+            </li>
+
+            <li class="sidenav-list-item">
+              <a class="sidenav-link fs-300 fw-bolder" href="#">
+                <i class="fa-solid fa-folder"></i>
+                <span class="sidebar-hidden"> Projects</span>
+              </a>
+            </li>
+            <li class="sidenav-list-item">
+              <a class="sidenav-link fs-300 fw-bolder" href="#">
+                <i class="fa-solid fa-calender"></i>
+                <span class="sidebar-hidden"> Calender</span>
+              </a>
+            </li>
+            <li class="sidenav-list-item">
+              <a class="sidenav-link fs-300 fw-bolder" href="#">
+                <i class="fa-solid fa-signal-bars"></i>
+                <span class="sidebar-hidden"> Reports</span>
+              </a>
+            </li>
+            <li class="sidenav-list-item">
+              <a class="sidenav-link fs-300 fw-bolder" href="#">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                <span class="sidebar-hidden"> Logout</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="mode-switch-container">
+          <input type="checkbox" id="check" class="switch-toggler" />
+          <label for="check" class="switch-box">Dark Mode</label>
+        </div>
+      </aside>
+      <main class="canvas"></main>
     </div>
   </body>
 </html>
