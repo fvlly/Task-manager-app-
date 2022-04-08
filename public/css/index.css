@@ -89,6 +89,7 @@ button,
 textarea,
 select {
   font: inherit;
+  color: inherit;
 }
 
 /* remove animations for people who've turned them off */
@@ -241,6 +242,11 @@ select {
   background-color: hsl(var(--clr-dark));
   color: hsl(var(--clr-white-300));
 }
+
+.dark-fade {
+  background-color: hsl(230 15% 7%);
+  color: hsl(var(--clr-white));
+}
 /* ------------ */
 /* ----styling page  */
 
@@ -257,18 +263,17 @@ header i {
 }
 
 .searchbox {
- 
   align-items: center;
   flex-basis: 50%;
   margin-left: auto;
-  padding: .5em 0.25em;
+  padding: 0.5em 0.25em;
   border: 1px solid hsl(var(--clr-light-300));
   border-radius: 1em;
 }
 
 .searchbox input {
   background-color: inherit;
-  border:none;
+  border: none;
   outline: none;
   width: 80%;
   padding-left: 1em;
@@ -293,13 +298,14 @@ header i {
   overflow-x: hidden;
   overflow-y: hidden;
   padding-top: 1em;
-  border: 1px solid pink;
+  min-height: 90vh;
 }
 
 .sidenav > .user-container {
   text-align: center;
   flex-direction: column;
   justify-content: center;
+  flex-grow: 1;
 }
 
 .user-container > .user-logo {
@@ -326,9 +332,16 @@ header i {
 }
 
 .sidenav-items > .sidenav-list {
-  padding: 0 1em;
+  padding: 1em o;
   list-style: none;
-  border: 1px solid red;
+}
+
+.sidenav-list.active {
+  border-left: 3px solid hsl(var(--clr-light-300));
+}
+
+.sidenav-link:hover {
+  background: hsl(var(--clr-white-300));
 }
 
 .sidenav-list > .sidenav-link {
@@ -339,7 +352,7 @@ header i {
   color: var(--clr-light-300);
   width: 100%;
   padding: 1em 0.5em;
-  border: 1px solid green;
+
   text-decoration: none;
 }
 
@@ -358,7 +371,6 @@ header i {
   align-items: center;
   position: relative;
   padding: 2em 0;
-  background-color: hsl(var(--clr-light));
 }
 
 /* hiding the checkbox */
@@ -374,7 +386,7 @@ header i {
   position: relative;
 
   cursor: pointer;
-  border: 1px solid blue;
+
   padding: 0.5em;
 }
 
@@ -384,8 +396,7 @@ header i {
   height: 1em;
   margin-right: 0.5em;
   border-radius: 1em;
-  background-color: hsl(var(--clr-light));
-  border: 1px solid orange;
+  background-color: hsl(var(--clr-white-300));
 }
 
 .toggle-box::after {
@@ -394,7 +405,7 @@ header i {
   width: 1em;
   height: 1em;
   border-radius: 1em;
-  border: 1px solid purple;
+  background-color: hsl(var(--clr-light-300));
 }
 
 .toggle-box ~ i {
@@ -427,13 +438,18 @@ header i {
   display: block;
 }
 
+.sidenav.open .sidenav-list {
+  padding: 0;
+}
+
+.sidenav-link:hover + .fa-solid::before {
+  transform: rotate(60deg);
+}
+
 .sidenav.open .sidenav-hidden {
   opacity: 1;
 }
 
 .sidenav.open .toggle-box {
   left: 1em;
-  
 }
-
-
