@@ -5,14 +5,14 @@
 :root {
   /* colors */
   --clr-dark: 230 35% 7%;
+  --clr-dark-300: 215, 50%, 23%;
   --clr-light: 231 77% 90%;
-  --clr-light-300: 215, 50%, 23%;
+  
   --clr-white: 0 0% 100%;
   --clr-white-300: 105, 55%, 96%;
 
   /* font-sizes */
-  --fs-900: 9.375rem;
-  --fs-800: 6.25rem;
+ 
   --fs-700: 3.5rem;
   --fs-600: 2rem;
   --fs-500: 1.75rem;
@@ -70,7 +70,7 @@ p {
 body {
   font-family: var(--ff-sans-normal);
   font-size: var(--fs-400);
-  color: hsl(var(--clr-light-300));
+  color: hsl(var(--clr-dark-300));
   background-color: hsl(var(--clr-white-300));
   line-height: 1.5;
   min-height: 100vh;
@@ -163,7 +163,7 @@ select {
 }
 
 .text-dark {
-  color: hsl(var(--clr-dark));
+  color: hsl(var(--clr-dark-300));
 }
 .text-accent {
   color: hsl(var(--clr-light));

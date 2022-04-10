@@ -1,0 +1,54 @@
+
+
+
+.tasks-container {
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  --gap: 3rem;
+  padding-top: 1.5em;
+  min-height: 100vh;
+}
+
+.new-tasks,
+.tasks-in-progress,
+.completed-tasks {
+  flex-direction: column;
+  --gap: 1.5rem;
+  border-radius: 0.5rem;
+  padding: 1em 0.5em;
+}
+
+.new-tasks div,.tasks-in-progress div ,.completed-tasks div {
+  padding: 0.5em 0.25em;
+  border-radius: 0.5rem;
+  background-color: hsl(var(--clr-white-300));
+}
+
+.counter-container {
+  justify-content: space-between;
+}
+
+.counter {
+  width: 2em;
+  height: 2em;
+  background-color: hsl(var(--clr-dark) / .2);
+  border: 1px solid orange;
+}
+
+.add-item {
+    min-height: 2em;
+  border-radius: 0.5em;
+  font-family: var(--fw-bold);
+  border: none;
+  outline: none;
+}
+
+.add-item:hover,
+.add-item:focus {
+  border: none;
+  outline: none;
+  background-color: hsl(var(--clr-dark) / 0.2);
+}
+
+.tasks > .task-list {
+  list-style-type: none;
+}
