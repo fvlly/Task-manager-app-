@@ -340,9 +340,7 @@ header i {
   border-left: 3px solid hsl(var(--clr-light-300));
 }
 
-.sidenav-link:hover {
-  background: hsl(var(--clr-white-300));
-}
+
 
 .sidenav-list > .sidenav-link {
   cursor: pointer;
@@ -354,6 +352,15 @@ header i {
   padding: 1em 0.5em;
 
   text-decoration: none;
+  transition: transform .4ms ease-in-out;
+}
+
+.sidenav-link:hover {
+  background: hsl(var(--clr-white-300));
+}
+
+.sidenav-link:hover > i.fa-solid {
+  transform: scale(1.2);
 }
 
 /* fixing icons not showing */
@@ -442,9 +449,6 @@ header i {
   padding: 0;
 }
 
-.sidenav-link:hover + .fa-solid::before {
-  transform: rotate(60deg);
-}
 
 .sidenav.open .sidenav-hidden {
   opacity: 1;
