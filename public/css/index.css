@@ -250,6 +250,10 @@ select {
 /* ------------ */
 /* ----styling page  */
 
+.canvas {
+  width: 80%;
+}
+
 header {
   align-items: center;
   --gap: 3rem;

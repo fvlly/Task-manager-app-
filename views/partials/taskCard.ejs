@@ -1,0 +1,45 @@
+<div class="new-tasks bg-accent text-dark flex">
+  <div class="counter-container flex">
+    <h2 class="fs-400 fw-bold"><%= taskState %></h2>
+    <div class="counter"></div>
+  </div>
+  <button class="add-item" name="newItem" data-modal-target="#modal">+</button>
+  <div class="modal flex" id="modal">
+    <div class="modal-header">
+      <p class="fw-bold">Enter Task</p>
+      <span class="fs-400 fw-bold close-dialog-btn" data-modal-close
+        >&times;</span
+      >
+    </div>
+    <div class="modal-body">
+      <form
+        class="modal-form flex"
+        action="
+        /taskCard"
+        method="post"
+      >
+        <input type="text" name="tasktitle" placeholder="task title" />
+        <textarea
+          name="taskcontent"
+          id="task-content"
+          cols="30"
+          rows="10"
+          placeholder="Task content should be enter here"
+        ></textarea>
+        <button class="btn" type="submit">ADD</button>
+      </form>
+    </div>
+  </div>
+  <div id="overlay"></div>
+
+  <!-- <div class="tasks-list-container"> -->
+  <ul class="tasks">
+    <li class="task-list">Create Task Manager App</li>
+    <li class="task-list"></li>
+    <% newTask.forEach(task=>{ %>
+    <p><%= task.taskHeader%></p>
+    <p><%=task.taskContent%></p>
+   <% }) %>
+  </ul>
+  <!-- </div> -->
+</div>

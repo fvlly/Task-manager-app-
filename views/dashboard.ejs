@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard</title>
+    <!-- Google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;700&family=Bellefair&family=Barlow:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- font awesome kit -->
+    <script
+      src="https://kit.fontawesome.com/c6eadd0fb1.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <link rel="stylesheet" href="css/index.css" />
+
+    <!-- custom js -->
+    <script src="index.js" defer></script>
+  </head>
+  <body>
+    <header class="flex">
+      <button class="btn" data-menu-icon-btn>
+        <i class="fa-solid fa-bars"></i>
+      </button>
+      <div class="searchbox flex">
+        <input type="text" placeholder="search" />
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </div>
+      <div class="settings-container flex">
+        <i class="fa-solid fa-gear"></i>
+        <i class="fa-solid fa-bell"></i>
+      </div>
+    </header>
+    <div class="dashboard-container flex">
+      <aside class="sidenav open  bg-white" data-sidenav>
+        <div class="user-container flex">
+          <div class="user-logo flex">
+            <img src="images/profile.jpg" alt="profile-image.jpg" />
+          </div>
+          <div class="username">Fvlly</div>
+        </div>
+        <div class="date-container"></div>
+        <div class="activities-container">
+          <ul class="sidenav-items flow">
+            <li class="sidenav-list active">
+              <a class="sidenav-link" data-sidenav-link  href="#">
+                <i class="fa-solid fa-house"></i>
+                <span class="sidenav-hidden fw-bold"> Overview</span>
+              </a>
+            </li>
+
+            <li class="sidenav-list">
+              <a class="sidenav-link" data-sidenav-link href="#">
+                <i class="fa-solid fa-folder"></i>
+                <span class="sidenav-hidden fw-bold"> Projects</span>
+              </a>
+            </li>
+            <li class="sidenav-list">
+              <a class="sidenav-link" data-sidenav-link href="#">
+                <i class="fa-solid fa-calender"></i>
+                <span class="sidenav-hidden fw-bold"> Calender</span>
+              </a>
+            </li>
+            <li class="sidenav-list">
+              <a class="sidenav-link" data-sidenav-link href="#">
+                <i class="fa-solid fa-flag"></i>
+                <span class="sidenav-hidden fw-bold"> Report</span>
+              </a>
+            </li>
+            <li class="sidenav-list logout">
+              <a class="sidenav-link" data-sidenav-link href="#">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                <span class="sidenav-hidden fw-bold"> Logout</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="toggle-container bg-accent">
+          <!-- <i class="fa-solid fa-moon  mode-icon"></i> -->
+          <input
+            type="checkbox"
+            id="check"
+            class="toggler"
+            data-toggle-switch
+          />
+          <label for="check" class="toggle-box" data-switch-box>
+           
+          </label>
+          <i class="fa-solid fa-sun mode-icon sidenav-hidden"></i>
+        </div>
+      </aside>
+      <main class="canvas text-dark"></main>
+    </div>
+  </body>
+</html>
