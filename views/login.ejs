@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SignUp</title>
+    <title>Sign in</title>
 
     <!-- font awesome kit -->
     <script
@@ -16,24 +16,16 @@
   </head>
   <body>
     <div class="sign-up-container">
-      <header><h1>Sign up</h1></header>
+      <header><h1>Sign In</h1></header>
       <form action="/" method="post">
         <div class="form-item-container">
-          <label for="fullName">Fullname</label>
-          <div class="input-container">
-            <div class="icon-container"><i class="fa-solid fa-user"></i></div>
-
-            <input type="text" id="fullName" placeholder="Enter your name" />
-          </div>
-        </div>
-        <div class="form-item-container">
-          <label for="fullName">Email</label>
+          <label for="email">Email</label>
           <div class="input-container">
             <div class="icon-container">
               <i class="fa-solid fa-envelope"></i>
             </div>
 
-            <input type="text" id="fullName" placeholder="e.g kells@gmail.com" />
+            <input type="email" id="email" placeholder="eg kells@gmail.com" />
           </div>
         </div>
         <div class="form-item-container">
@@ -42,23 +34,30 @@
             <div class="icon-container"><i class="fa-solid fa-key"></i></div>
 
             <input
-              type="text"
-              id="fullName"
+              type="password"
+              id="password"
               placeholder="Enter your password"
             />
           </div>
+          <a  class="forogt-password" href="#">forgot password?</a>
         </div>
-        <div class="form-item-container">
-          <label for="fullName">Confirm password</label>
-          <div class="input-container">
-            <div class="icon-container"><i class="fa-solid fa-key"></i></div>
-
-            <input type="text" id="fullName" placeholder="Confirm Password" />
-          </div>
+        <div class="checkbox-container">
+          <label for="sign-in-checkbo">Remember me ?</label>
+          <input type="checkbox" />
         </div>
 
-        <button type="submit" class="btn sign-up">REGISTER</button>
-        <span>Have an account?</span> <a href="#"><strong>Sign In</strong> </a>
+        <button type="submit" class="btn sign-up">LOGIN</button>
+
+        <div class="auth-header"> <p class="auth">OR</p>
+            <span>sign In with </span></div>
+       
+        <div class="socials">
+            <div class="social-container google"><i class="fa-brands fa-google"></i></div>
+            <div class="social-container facebook-f"><i class="fa-brands fa-facebook-f"></i></div>
+
+        </div>
+        <span>Don't have an Account?</span>
+        <a href="#"><strong>Sign up</strong> </a>
       </form>
     </div>
   </body>
