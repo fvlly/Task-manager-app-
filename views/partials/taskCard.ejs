@@ -3,7 +3,7 @@
     <h2 class="fs-400 fw-bold"><%= taskState %></h2>
     <div class="counter"><%= taskItems.length %></div>
   </div>
-  <button class="add-item" name="newItem" data-modal-target="#modal">+</button>
+  <button class="add-item" name="newitem" data-modal-target="#modal">+</button>
   <div class="modal flex" id="modal">
     <div class="modal-header">
       <p class="fw-bold">Enter Task</p>
@@ -26,7 +26,14 @@
           rows="10"
           placeholder="Task content should be enter here"
         ></textarea>
-        <button class="btn" type="submit">ADD</button>
+        <button
+          class="btn"
+          name="taskbutton"
+          value="<%= taskState %>"
+          type="submit"
+        >
+          ADD
+        </button>
       </form>
     </div>
   </div>
@@ -36,7 +43,6 @@
   <ul class="tasks">
     <li class="task-list">Create Task Manager App</li>
     <% taskItems.forEach(task=>{ %>
-      <% console.log(taskState) %> 
     <li class="task-list"><%= task.description%></li>
     <% }) %>
   </ul>

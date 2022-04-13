@@ -1,6 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const ejs = require("ejs");
+const _ = require("lodash");
 
 require("./db/mongoose");
 const User = require("./models/users");
@@ -53,20 +54,32 @@ app.get("/projects", (req, res) => {
 });
 
 app.post("/taskCard", (req, res) => {
+ const buttonName = req.body.taskbutton;
+ console.log(buttonName, 'clicked');
   const newTask = new Task({
-    description: req.body.taskTitle,
+    description: _.lowerCase(req.body.taskTitle),
   });
 
-  newTask
-    .save()
-    .then((task) => {
-      console.log(task);
-    })
-    .catch((err) => {
-      res.status(400).send(err);
-    });
+  Task.findOne({ description: newTask.description }, (err, task) => {
+    if (!err) {
+      if (!task) {
+        newTask
+          .save()
+          .then((task) => {
+            console.log(task);
+          })
+          .catch((err) => {
+            res.status(400).send(err);
+          });
 
-  res.redirect("/projects");
+        res.redirect("/projects");
+      } else {
+        console.log("task already exists");
+        res.redirect("/projects");
+        return;
+      }
+    }
+  });
 });
 
 app.listen(3000, () => {
