@@ -2,50 +2,17 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const ejs = require("ejs");
 
-const mongoose = require("mongoose");
-
-mongoose.connect("mongodb://localhost:27017/taskManagerDB", {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  //   useCreateIndex: true,
-});
-
-const User = mongoose.model("user", {
-  name: {
-    type: String,
-    required: true,
-    trim: true,
-  },
-  email: {
-    type: String,
-    required: true,
-  },
-  password: {
-    type: String,
-    minlength: 8,
-    required: true,
-  },
-});
-
-const Task = mongoose.Model("task",{
-    description:{
-        type:String,
-        require:true,
-    },
-    taskState:{
-        type:String,
-        required:true,
-        default:"not start",
-    }
-})
+require("./db/mongoose");
+const User = require("./models/users");
+const Task = require("./models/tasks");
 
 const app = express();
 app.use(express.static("public"));
+
+// app.use(express.json())
 app.use(express.urlencoded({ extended: true }));
 
 app.set("view engine", "ejs");
-
-const tasks = [];
 
 app.get("/", (req, res) => {
   res.render("register");
@@ -76,18 +43,28 @@ app.get("/dashboard", (req, res) => {
   res.render("dashboard");
 });
 app.get("/projects", (req, res) => {
-  res.render("projects", { newTask: tasks });
+  Task.find({})
+    .then((tasks) => {
+      res.render("projects", { taskItems: tasks });
+    })
+    .catch((err) => {
+      res.status(400).send("no tasks in collection");
+    });
 });
 
 app.post("/taskCard", (req, res) => {
-  const newTask = {
-    taskHeader: req.body.tasktitle,
-    taskContent: req.body.taskcontent,
-  };
+  const newTask = new Task({
+    description: req.body.taskTitle,
+  });
 
-  console.log(newTask);
-
-  tasks.push(newTask);
+  newTask
+    .save()
+    .then((task) => {
+      console.log(task);
+    })
+    .catch((err) => {
+      res.status(400).send(err);
+    });
 
   res.redirect("/projects");
 });

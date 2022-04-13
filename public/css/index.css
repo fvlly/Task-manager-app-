@@ -7,12 +7,12 @@
   --clr-dark: 230 35% 7%;
   --clr-dark-300: 215, 50%, 23%;
   --clr-light: 231 77% 90%;
-  
+
   --clr-white: 0 0% 100%;
   --clr-white-300: 105, 55%, 96%;
 
   /* font-sizes */
- 
+
   --fs-700: 3.5rem;
   --fs-600: 2rem;
   --fs-500: 1.75rem;
@@ -51,6 +51,7 @@ h3,
 h4,
 h5,
 p,
+ul,
 figure,
 picture {
   margin: 0;
@@ -344,8 +345,6 @@ header i {
   border-left: 3px solid hsl(var(--clr-light-300));
 }
 
-
-
 .sidenav-list > .sidenav-link {
   cursor: pointer;
   display: flex;
@@ -356,7 +355,7 @@ header i {
   padding: 1em 0.5em;
 
   text-decoration: none;
-  transition: transform .4ms ease-in-out;
+  transition: transform 0.4ms ease-in-out;
 }
 
 .sidenav-link:hover {
@@ -452,7 +451,6 @@ header i {
 .sidenav.open .sidenav-list {
   padding: 0;
 }
-
 
 .sidenav.open .sidenav-hidden {
   opacity: 1;
