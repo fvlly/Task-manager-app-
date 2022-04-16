@@ -3,7 +3,14 @@
     <h2 class="fs-400 fw-bold"><%= taskState %></h2>
     <div class="counter"><%= taskItems.length %></div>
   </div>
-  <button class="add-item" name="newitem" data-modal-target="#modal">+</button>
+  <button
+    class="add-item"
+    name="newitem"
+    data-modal-target="#modal"
+    value="<%= taskState %>"
+  >
+    +
+  </button>
   <div class="modal flex" id="modal">
     <div class="modal-header">
       <p class="fw-bold">Enter Task</p>
@@ -18,19 +25,17 @@
         /taskCard"
         method="post"
       >
-        <input type="text" name="taskTitle" placeholder="task title" />
-        <textarea
-          name="taskcontent"
-          id="task-content"
-          cols="30"
-          rows="10"
-          placeholder="Task content should be enter here"
-        ></textarea>
+        <input type="text" name="taskTitle" placeholder="task description" />
+        <label for="in-progress">In Progress</label>
+        <input type="checkbox" name="in-progess" id="in-progress" />
+        <label for="completed">Completed</label>
+        <input type="checkbox" name="completed" id="completed" />
         <button
           class="btn"
           name="taskbutton"
           value="<%= taskState %>"
           type="submit"
+          data-form-submit
         >
           ADD
         </button>
