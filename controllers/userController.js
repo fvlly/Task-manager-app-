@@ -1,19 +1,37 @@
+const bcrypt = require("bcryptjs");
 const User = require("../models/users");
 
 // register a user , /users , access:public
 const registerUser = async (req, res) => {
+  const { fullName: name, email, password } = req.body;
+
+  if (!name || !email || !password) {
+    res.status(400);
+    throw new Error("please input all fields");
+  }
+
+  const user = await User.findOne({ email });
+
+  if (user) {
+    res.status(400);
+    throw new Error("User already exists");
+  }
+
+  const hashedPassword = await bcrypt.hash(password, 8);
   const newUser = new User({
-    name: req.body.fullName,
-    email: req.body.email,
-    password: req.body.password,
+    name,
+    email,
+    password: hashedPassword,
   });
 
   try {
     await newUser.save();
-    console.log("successfly logged new user");
-    res.redirect("/dashboard");
+    console.log("user saved to db");
+    res.status(201).json(newUser);
+    // res.redirect("/dashboard");
   } catch (error) {
-    console.log(`Error ${error}`);
+    res.status(400);
+    console.log(error);
   }
 };
 
@@ -23,12 +41,11 @@ const loginUser = async (req, res) => {
 
   try {
     const foundUser = await User.findOne({ email });
-    if (foundUser && User.password === password) {
-      res.send(201).json({
-        _id: foundUser.id,
-        name: foundUser.name,
-        email: foundUser.email,
-      });
+    const isMatch = await bcrypt.compare(password, foundUser.password);
+    if (foundUser && isMatch) {
+      res.status(201).json(foundUser);
+    } else {
+      console.log("invalid credentials");
     }
   } catch (error) {
     res.status(400);
@@ -57,7 +74,7 @@ const getUser = async (req, res) => {
 };
 
 module.exports = {
-    registerUser,
-    loginUser,
-    getUser
-}
+  registerUser,
+  loginUser,
+  getUser,
+};
