@@ -1,0 +1,48 @@
+<div class="new-tasks bg-accent text-dark flex">
+  <div class="counter-container flex">
+    <h2 class="fs-400 fw-bold"><%= taskState %></h2>
+    <div class="counter"><%= taskItems.length %></div>
+  </div>
+  <button
+    class="add-item"
+    name="newitem"
+    data-add-task
+    value="<%= taskState %>"
+  >
+    +
+  </button>
+
+  <div class="task-form-container">
+    <form action="/newTask" method="post" class="task-form">
+      <textarea
+        type="text"
+        name="task"
+        placeholder="Enter Task"
+        rows="4"
+        cols="20"
+      ></textarea>
+      <!-- <div class="new-task">
+        <label for="new-task">new</label>
+        <input type="text" name="new" placeholder="eg.true" />
+      </div> -->
+      <div class="task-in-progress">
+        <label for="in-progess">In progress</label>
+        <input type="text" name="inProgress" placeholder="eg.true" />
+      </div>
+      <div class="completed-task">
+        <label for="completed">Completed</label>
+        <input type="text" name="completd" placeholder="eg.true"/>
+      </div>
+      <button type="submit" class="submit-task" data-submit-task>ADD</button>
+    </form>
+  </div>
+
+  <!-- <div class="tasks-list-container"> -->
+  <ul class="tasks">
+    <li class="task-list">Create Task Manager App</li>
+    <% taskItems.filter(task => task.new === true).forEach(taskFound =>{%>
+    <li class="task-list"><%- taskFound.description %></li>
+    <% })%>
+  </ul>
+  <!-- </div> -->
+</div>
