@@ -13,6 +13,13 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.set("view engine", "ejs");
 
+// // middleware for maintenance
+// app.use((req, res, next) => {
+//   // const {get,post,put,patch,delete,} = req.method
+
+//   res.status(503).send("Site undergoing maintenance");
+// });
+
 app.use(userRouter);
 app.use(taskRouter);
 

@@ -23,12 +23,14 @@ const postTask = async (req, res) => {
   }
 };
 
-// get tasks,/projects, public
+// get tasks,/tasks, public
 
 const getTasks = async (req, res) => {
   try {
     const foundTasks = await Task.find({});
-    res.render("projects", { taskItems: foundTasks });
+    if (foundTasks) {
+      res.status(200).send(foundTasks);
+    }
   } catch (error) {
     res.status(404).send("database is down");
   }
@@ -50,12 +52,28 @@ const getTask = async (req, res) => {
 };
 
 const editTask = async (req, res) => {
-  try {
-    const { description } = req.body;
-    const foundTask = await Task.findOneAndUpdate({ description });
-    if (foundTask) {
+  const updates = Object.keys(req.body)
+    const allowedUpdates = ['description', 'completed']
+    const isValidOperation = updates.every((update) => allowedUpdates.includes(update))
+
+    if (!isValidOperation) {
+        return res.status(400).send({ error: 'Invalid updates!' })
     }
-  } catch (error) {}
+
+    try {
+        const task = await Task.findById(req.params.id)
+
+        updates.forEach((update) => task[update] = req.body[update])
+        await task.save()
+
+        if (!task) {
+            return res.status(404).send()
+        }
+
+        res.send(task)
+    } catch (e) {
+        res.status(400).send(e)
+    }
 };
 
 // delete specific task ,/tasks/:id, private
@@ -77,5 +95,6 @@ module.exports = {
   postTask,
   getTasks,
   getTask,
+  editTask,
   deleteTask,
 };
