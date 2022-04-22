@@ -1,5 +1,6 @@
 const express = require("express");
 const _ = require("lodash");
+const { protect } = require("../middleware/authMiddleware");
 const {
   postTask,
   getTasks,
@@ -9,10 +10,10 @@ const {
 } = require("../controllers/taskController");
 const router = new express.Router();
 
-router.post("/tasks/newTask", postTask);
-router.get("/tasks/:id", getTasks);
-router.patch("/tasks/:id", editTask);
-router.get("/tasks/me", getTask);
-router.delete("/tasks/me", deleteTask);
+router.post("/tasks/newTask", protect, postTask);
+router.get("/tasks", protect, getTasks);
+router.patch("/tasks/:id", protect, editTask);
+router.get("/tasks/me", protect, getTask);
+router.delete("/tasks/me", protect, deleteTask);
 
 module.exports = router;

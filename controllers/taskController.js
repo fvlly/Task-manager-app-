@@ -1,12 +1,12 @@
+const jwt = require("jsonwebtoken");
 const Task = require("../models/tasks");
+const User = require("../models/users");
 
 // post a task, post /newtask, public
 const postTask = async (req, res) => {
-  const { task, inProgress, completed } = req.body;
   const newTask = await new Task({
-    description: task,
-    inProgress,
-    completed,
+    ...req.body,
+    owner: req.user._id,
   });
 
   try {
@@ -27,13 +27,24 @@ const postTask = async (req, res) => {
 
 const getTasks = async (req, res) => {
   try {
-    const foundTasks = await Task.find({});
-    if (foundTasks) {
-      res.status(200).send(foundTasks);
+    const userTasks = await req.user.populate("tasks");
+
+    if (!userTasks) {
+      throw new Error("not tasks found for user");
     }
-  } catch (error) {
-    res.status(404).send("database is down");
+    res.send(req.user.tasks);
+  } catch (e) {
+    res.status(500).send();
   }
+  // first approach
+  // try {
+  //   const foundTasks = await Task.find({ owner: req.user._id });
+  //   if (foundTasks) {
+  //     res.status(200).send(foundTasks);
+  //   }
+  // } catch (error) {
+  //   res.status(400).send("no user tasks found");
+  // }
 };
 
 // get a specific taks, /tasks/:id, private
@@ -51,29 +62,34 @@ const getTask = async (req, res) => {
   }
 };
 
+//edit user taks
 const editTask = async (req, res) => {
-  const updates = Object.keys(req.body)
-    const allowedUpdates = ['description', 'completed']
-    const isValidOperation = updates.every((update) => allowedUpdates.includes(update))
+  const updates = Object.keys(req.body);
+  const allowedUpdates = ["description", "completed"];
+  const isValidOperation = updates.every((update) =>
+    allowedUpdates.includes(update)
+  );
 
-    if (!isValidOperation) {
-        return res.status(400).send({ error: 'Invalid updates!' })
+  if (!isValidOperation) {
+    return res.status(400).send({ error: "Invalid updates!" });
+  }
+
+  try {
+    const task = await Task.findOne({
+      _id: req.params.id,
+      owner: req.user._id,
+    });
+
+    if (!task) {
+      return res.status(404).send();
     }
+    updates.forEach((update) => (task[update] = req.body[update]));
+    await task.save();
 
-    try {
-        const task = await Task.findById(req.params.id)
-
-        updates.forEach((update) => task[update] = req.body[update])
-        await task.save()
-
-        if (!task) {
-            return res.status(404).send()
-        }
-
-        res.send(task)
-    } catch (e) {
-        res.status(400).send(e)
-    }
+    res.send(task);
+  } catch (e) {
+    res.status(400).send(e);
+  }
 };
 
 // delete specific task ,/tasks/:id, private

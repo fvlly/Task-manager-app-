@@ -7,10 +7,7 @@ const taskSchema = new mongoose.Schema(
       trim: true,
       required: true,
     },
-    new: {
-      type: Boolean,
-      default: false,
-    },
+
     inProgress: {
       type: Boolean,
       default: false,
@@ -18,6 +15,12 @@ const taskSchema = new mongoose.Schema(
     completed: {
       type: Boolean,
       default: false,
+    },
+    // establishing the user/task relationship
+    owner: {
+      type: mongoose.Schema.Types.ObjectId,
+      required: true,
+      ref: "User",
     },
   },
   { timestamps: true }

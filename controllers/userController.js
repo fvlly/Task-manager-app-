@@ -2,6 +2,7 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const User = require("../models/users");
 
+
 function generateToken(id) {
   return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: "1h" });
 }
@@ -101,6 +102,7 @@ const deleteUser = async (req, res) => {
     res.status(500).send();
   }
 };
+
 
 module.exports = {
   registerUser,
