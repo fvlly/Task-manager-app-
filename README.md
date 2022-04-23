@@ -7,7 +7,9 @@
 
 ## Start Project
 ```js
-npm run Dev
+
+- run npm intall to get required packages
+- npm run Dev to start up server
 ```
 ## features
 - [x] Authenticate user and associated task
