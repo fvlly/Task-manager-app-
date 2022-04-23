@@ -3,7 +3,8 @@
 ![](https://img.shields.io/badge/Code-NodeJs-informational?style=flat&logo=nodedotjs&color=339933)
 ![](https://img.shields.io/badge/Code-MongoDB-informational?style=flat&logo=mongodb&color=47A24B)
 
-**A simple task managment app, made for learning **
+## Description
+Welcome, This is app was developed for learning puropeses, covering, templating engines, CRUD operations with APIs, Database Managment System(Mongoose) and User Authentication with Javascript web token, feel free to dive in 
 
 ## Start Project
 ```js
