@@ -26,8 +26,23 @@ const postTask = async (req, res) => {
 // get tasks,/tasks, public
 
 const getTasks = async (req, res) => {
+  const match = {};
+  const sort = {};
+
+  if (req.query.sortBy) {
+    const parts = req.query.sortBy.split(":");
+    sort[parts[0]] = parts[1] === "desc" ? -1 : 1;
+  }
+
+  if (req.query.completed) {
+    match.completed = req.query.completed === "true";
+  }
+
   try {
-    const userTasks = await req.user.populate("tasks");
+    const userTasks = await req.user.populate({
+      path: "tasks",
+      match,
+    });
 
     if (!userTasks) {
       throw new Error("not tasks found for user");
