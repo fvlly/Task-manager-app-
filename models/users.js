@@ -19,6 +19,10 @@ const userSchema = new mongoose.Schema(
       minlength: 8,
       required: [true, "password length much b longr than 8"],
     },
+    //image uploAD
+    avatar: {
+      type: Buffer,
+    },
   },
   { timestamps: true }
 );
@@ -35,10 +39,10 @@ userSchema.virtual("tasks", {
 
 //cascade delete user and along with tasks
 
-userSchema.pre("remove", async function(next){
+userSchema.pre("remove", async function (next) {
   const user = this;
-  await Task.deleteMany({owner:user._id})
-  next()
-})
+  await Task.deleteMany({ owner: user._id });
+  next();
+});
 
 module.exports = User;

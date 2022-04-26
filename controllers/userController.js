@@ -2,7 +2,6 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const User = require("../models/users");
 
-
 function generateToken(id) {
   return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: "1h" });
 }
@@ -33,12 +32,8 @@ const registerUser = async (req, res) => {
   try {
     await newUser.save();
     console.log("user saved to db");
-    res.status(201).json({
-      _id: newUser.id,
-      name: newUser.name,
-      email: newUser.email,
-      token: generateToken(newUser.id),
-    });
+    const token = generateToken(newUser.id);
+    res.status(201).send({ newUser, token });
     // res.redirect("/dashboard");
   } catch (error) {
     res.status(404).send(e.message);
@@ -54,9 +49,9 @@ const loginUser = async (req, res) => {
     const foundUser = await User.findOne({ email });
     const isMatch = await bcrypt.compare(password, foundUser.password);
     if (foundUser && isMatch) {
-      res
-        .status(201)
-        .json({ ...foundUser, token: generateToken(foundUser.id) });
+      const token = generateToken(foundUser.id);
+
+      res.status(200).send({ foundUser, token });
     } else {
       console.log("invalid credentials");
     }
@@ -103,6 +98,14 @@ const deleteUser = async (req, res) => {
   }
 };
 
+// upload avatar /users/upload @access private
+const postAvatar = async (req, res) => {
+  req.user.avatar = req.file.buffer;
+
+  console.log(req.file.buffer);
+  await req.user.save();
+  res.send({ file: "successfully uploaded avatar" });
+};
 
 module.exports = {
   registerUser,
@@ -110,4 +113,5 @@ module.exports = {
   getUser,
   updateUser,
   deleteUser,
+  postAvatar,
 };
