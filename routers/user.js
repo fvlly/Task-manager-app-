@@ -2,12 +2,15 @@ const express = require("express");
 const _ = require("lodash");
 const User = require("../models/users");
 const multer = require("multer");
+const storage = multer.memoryStorage();
+
 const upload = multer({
+  storage,
   limits: {
     fileSize: 1000000,
   },
   fileFilter(req, file, cb) {
-    if (!file.originalname.endsWith.match(/\.(png || jpg)$/)) {
+    if (!file.originalname.match(/\.(jpg|jpeg|png)$/)) {
       return new Error("Please upload file in jpg or png format");
     }
 
