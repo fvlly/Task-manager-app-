@@ -14,7 +14,7 @@
   padding: 1em 0.5em;
 }
 
-.new-tasks div,
+.new-tasks > div,
 .tasks-in-progress div,
 .completed-tasks div {
   padding: 1em 0.5em;
@@ -29,10 +29,12 @@
 .counter {
   display: flex;
   align-items: center;
+  justify-content: center;
   width: 2em;
   height: 2em;
   background-color: hsl(var(--clr-dark) / 0.2);
   border: 1px solid orange;
+  border-radius: .5em;
 }
 
 .add-item {
@@ -66,55 +68,25 @@
   list-style-type: none;
 }
 
-/* -----modal styling */
-.modal {
-  cursor: pointer;
-  flex-direction: column;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  z-index: 10;
-  transform: translate(-50%, -50%) scale(0);
-  transition: 200ms ease-in-out;
-
-  max-width: 50ch;
-  border: 1px solid gray;
-  box-shadow: 0 0 1em rgb(0 0 0/ 0.3);
-  border-radius: 5px;
-  padding: min(0.5em, 1em) min(0.25em, 0.5em);
+.task-form-container {
+  display: none;
+  transition: display 400ms ease-in;
 }
 
-.modal-header {
-  display: flex;
-  justify-content: space-between;
-}
-
-.modal-form {
+.task-form {
   display: flex;
   flex-direction: column;
+  gap: 0.5em;
+
 }
 
-.modal.active {
-  transform: translate(-50%, -50%) scale(1);
+.task-form > textarea {
+  max-width: 100%;
+  resize: none;
+  outline: none;
+  border: none;
 }
 
-#overlay {
-  position: fixed;
-  pointer-events: none;
-  opacity: 0;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  background: linear-gradient(
-    45deg,
-    hsl(var(--clr-dark) / 0.2),
-    hsl(var(--clr-light) / 0.3)
-  );
-}
-
-#overlay.active {
-  opacity: 1;
-  pointer-events: all;
-  transition: 200ms ease-in-out;
+.task-form-container.active {
+  display: block;
 }

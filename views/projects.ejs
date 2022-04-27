@@ -5,10 +5,11 @@
     <h1 class="fw-bolder text-dark" style="padding-top: 1rem">Projects</h1>
   </header>
   <div class="tasks-container grid">
-    <%- include("partials/taskCard", {taskState:"New task",}) %>
-    <%- include("partials/taskCard", {taskState:"In progress"}) %>
-    <%- include("partials/taskCard", {taskState:"Completed tasks"}) %>
+    <%- include("partials/newtask", {taskState:"New task" }) %>
+    <%- include("partials/inprogress", {taskState:"In progress"}) %>
+    <%- include("partials/completed", {taskState:"Completed tasks"}) %>
     
+
     
 </section>
 <%- include('partials/footer') %>
