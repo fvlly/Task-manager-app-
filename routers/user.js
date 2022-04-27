@@ -25,6 +25,8 @@ const {
   updateUser,
   deleteUser,
   postAvatar,
+  getAvatar,
+  deleteAvatar,
 } = require("../controllers/userController");
 const { protect } = require("../middleware/authMiddleware");
 const router = new express.Router();
@@ -43,7 +45,7 @@ router.patch("/users/me", protect, updateUser);
 
 router.delete("/users/me", protect, deleteUser);
 
-// avatar
+//  upload avatar
 router.post(
   "/users/upload",
   protect,
@@ -53,5 +55,11 @@ router.post(
     res.status(400).send({ error: error.message });
   }
 );
+
+// get avatar
+router.get("/users/:id/avatar", protect, getAvatar);
+
+//delete avatar
+router.delete("/users/me/avatar", protect, deleteAvatar);
 
 module.exports = router;

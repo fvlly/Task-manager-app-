@@ -1,5 +1,6 @@
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const sharp = require("sharp/lib/sharp");
 const User = require("../models/users");
 
 function generateToken(id) {
@@ -100,12 +101,45 @@ const deleteUser = async (req, res) => {
 
 // upload avatar /users/upload @access private
 const postAvatar = async (req, res) => {
-  req.user.avatar = req.file.buffer;
+  const buffer = await sharp(req.file.buffer)
+    .resize({
+      width: 250,
+      height: 250,
+    })
+    .png()
+    .toBuffer();
+  req.user.avatar = buffer;
 
-  console.log(req.file.buffer);
   await req.user.save();
   res.send({ file: "successfully uploaded avatar" });
 };
+
+//get user avatar, /users/:id/avatar @access private
+const getAvatar =async (req,res) => {
+  try {
+    const user = await User.findById(req.params.id)
+
+    if (!user || !user.avatar) {
+        throw new Error()
+    }
+
+    res.set('Content-Type', 'image/png')
+    res.send(user.avatar)
+} catch (e) {
+    res.status(404).send()
+}
+
+
+
+}
+
+// delete user avatar, /users/me/avatar, @access private
+const deleteAvatar = async (req, res) => {
+  req.user.avatar = undefined
+  await req.user.save()
+  res.send()
+}
+
 
 module.exports = {
   registerUser,
@@ -114,4 +148,6 @@ module.exports = {
   updateUser,
   deleteUser,
   postAvatar,
+  getAvatar,
+  deleteAvatar,
 };
