@@ -31,10 +31,6 @@ const {
 const { protect } = require("../middleware/authMiddleware");
 const router = new express.Router();
 
-router.get("/", (req, res) => {
-  res.render("register");
-});
-
 router.post("/users/register", registerUser);
 
 router.post("/users/login", loginUser);
